@@ -321,66 +321,31 @@
     }
 
     /* footer */
-    /* Footer glass */
-    .footer-glass {
-      background: linear-gradient(180deg,
-          rgba(255, 255, 255, 0.16),
-          rgba(255, 255, 255, 0.06));
-      backdrop-filter: blur(30px) saturate(180%);
-      -webkit-backdrop-filter: blur(30px) saturate(180%);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.35),
-        0 40px 90px rgba(0, 0, 0, 0.65);
-    }
+   /* Footer Glass */
+.footer-glass {
+  @apply bg-white/10 backdrop-blur-xl border border-white/25 rounded-3xl shadow-lg;
+}
 
-    /* Footer links */
-    .footer-link {
-      position: relative;
-      color: #94a3b8;
-      text-decoration: none;
-      transition: color 0.25s ease;
-    }
+/* Footer Links */
+.footer-link {
+  @apply relative text-slate-400 hover:text-teal-400 transition-colors;
+}
+.footer-link::after {
+  content: '';
+  @apply absolute left-0 bottom-0 h-[1px] w-0 bg-gradient-to-r from-teal-400 to-purple-700 transition-all;
+}
+.footer-link:hover::after {
+  @apply w-full;
+}
 
-    .footer-link:hover {
-      color: #5eead4;
-    }
+/* Social buttons */
+.social-btn {
+  @apply w-10 h-10 flex items-center justify-center rounded-xl bg-white/10 border border-white/20 text-slate-200 transition-all;
+}
+.social-btn:hover {
+  @apply bg-white/20 shadow-lg -translate-y-1;
+}
 
-    .footer-link::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -2px;
-      width: 0%;
-      height: 1px;
-      background: linear-gradient(90deg, #5eead4, #7c3aed);
-      transition: width 0.3s ease;
-    }
-
-    .footer-link:hover::after {
-      width: 100%;
-    }
-
-    /* Social buttons */
-    .social-btn {
-      width: 38px;
-      height: 38px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      backdrop-filter: blur(14px);
-      color: #e5e7eb;
-      transition: all 0.25s ease;
-    }
-
-    .social-btn:hover {
-      background: rgba(255, 255, 255, 0.22);
-      box-shadow: 0 0 18px rgba(56, 189, 248, 0.6);
-      transform: translateY(-2px);
-    }
   </style>
 </head>
 
@@ -731,95 +696,82 @@
   </div>
 
 
-  <footer class="relative z-40 px-6 pb-10">
-    <div class="footer-glass mx-auto max-w-7xl rounded-3xl px-6 py-6 mt-10">
+  <footer class="relative z-40 w-full">
+  <!-- Interactive 3D Background -->
+  <canvas id="footer-bg" class="absolute inset-0 w-full h-full -z-10"></canvas>
 
-      <div class="grid md:grid-cols-4 gap-6 text-sm text-slate-300">
+  <!-- Footer content -->
+  <div class="mx-auto max-w-7xl px-6 py-12 lg:py-16">
+    <div class="grid md:grid-cols-4 gap-8 text-sm text-slate-300">
 
-        <!-- Brand -->
-        <div>
-          <div class="text-white font-semibold tracking-wide text-base">
-            DEMNET
-          </div>
-          <p class="mt-2 leading-relaxed text-slate-400">
-            Intelligent MRI-based cognitive analysis platform delivering
-            deep learning–driven insights through advanced visualization
-            and explainable AI.
-          </p>
-        </div>
-
-        <!-- Navigation -->
-        <div>
-          <div class="text-white font-semibold mb-2">
-            Navigation
-          </div>
-          <ul class="space-y-1">
-            <li><a href="#home" data-target="home" class="footer-link">Home</a></li>
-            <li><a href="#upload" data-target="upload" class="footer-link">Upload</a></li>
-            <li><a href="#model" data-target="model" class="footer-link">Model</a></li>
-            <li><a href="#dashboard" data-target="dashboard" class="footer-link">Dashboard</a></li>
-          </ul>
-        </div>
-
-        <!-- Platform -->
-        <div>
-          <div class="text-white font-semibold mb-2">
-            Platform
-          </div>
-          <ul class="space-y-1">
-            <li>MRI Image Processing</li>
-            <li>Deep Learning Models</li>
-            <li>Explainable AI (Grad-CAM)</li>
-            <li>Interactive Analytics</li>
-          </ul>
-        </div>
-
-        <!-- Social -->
-        <div>
-          <div class="text-white font-semibold mb-2">
-            Connect
-          </div>
-
-          <div class="flex items-center gap-3 mt-2">
-            <a href="#" class="social-btn" aria-label="Twitter">
-              <i class="fa-brands fa-x-twitter"></i>
-            </a>
-            <a href="#" class="social-btn" aria-label="LinkedIn">
-              <i class="fa-brands fa-linkedin-in"></i>
-            </a>
-            <a href="#" class="social-btn" aria-label="GitHub">
-              <i class="fa-brands fa-github"></i>
-            </a>
-            <a href="#" class="social-btn" aria-label="YouTube">
-              <i class="fa-brands fa-youtube"></i>
-            </a>
-          </div>
-
-          <p class="mt-3 text-xs text-slate-400 leading-relaxed">
-            Follow updates, platform enhancements, and research insights.
-          </p>
-        </div>
-
+      <!-- Brand -->
+      <div>
+        <h2 class="text-white font-bold text-lg">DEMNET</h2>
+        <p class="mt-2 text-slate-400 leading-relaxed">
+          Intelligent MRI-based cognitive analysis platform delivering
+          deep learning–driven insights through advanced visualization
+          and explainable AI.
+        </p>
       </div>
 
-      <!-- Bottom Bar -->
-      <div
-        class="mt-6 pt-4 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-slate-400">
+      <!-- Navigation -->
+      <div>
+        <h3 class="text-white font-semibold mb-3">Navigation</h3>
+        <ul class="space-y-2">
+          <li><a href="#home" class="footer-link">Home</a></li>
+          <li><a href="#upload" class="footer-link">Upload</a></li>
+          <li><a href="#model" class="footer-link">Model</a></li>
+          <li><a href="#dashboard" class="footer-link">Dashboard</a></li>
+        </ul>
+      </div>
 
-        <div>
-          © 2025 DEMNET. All rights reserved.
+      <!-- Platform -->
+      <div>
+        <h3 class="text-white font-semibold mb-3">Platform</h3>
+        <ul class="space-y-2">
+          <li>MRI Image Processing</li>
+          <li>Deep Learning Models</li>
+          <li>Explainable AI (Grad-CAM)</li>
+          <li>Interactive Analytics</li>
+        </ul>
+      </div>
+
+      <!-- Social -->
+      <div>
+        <h3 class="text-white font-semibold mb-3">Connect</h3>
+        <div class="flex gap-3 mt-2">
+          <a href="#" class="social-btn" aria-label="Twitter">
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
+          <a href="#" class="social-btn" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+          <a href="#" class="social-btn" aria-label="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="#" class="social-btn" aria-label="YouTube">
+            <i class="fa-brands fa-youtube"></i>
+          </a>
         </div>
-
-        <div class="flex items-center gap-4">
-          <a href="#" class="footer-link">Privacy</a>
-          <a href="#" class="footer-link">Terms</a>
-          <a href="#" class="footer-link">Security</a>
-        </div>
-
+        <p class="mt-3 text-xs text-slate-400">
+          Follow updates, platform enhancements, and research insights.
+        </p>
       </div>
 
     </div>
-  </footer>
+
+    <!-- Bottom Bar -->
+    <div class="mt-12 pt-6 border-t border-white/20 flex flex-col md:flex-row justify-between items-center text-xs text-slate-400 gap-3">
+      <p>© 2025 DEMNET. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="#" class="footer-link">Privacy</a>
+        <a href="#" class="footer-link">Terms</a>
+        <a href="#" class="footer-link">Security</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
 
 
 
@@ -1374,6 +1326,53 @@
 
 
   </script>
+
+  <script>
+  /* ---------------------------
+      Footer 3D/Particle Background
+  --------------------------- */
+  const footerCanvas = document.getElementById('footer-bg');
+  const footerCtx = footerCanvas.getContext('2d');
+
+  function resizeFooterCanvas() {
+    footerCanvas.width = footerCanvas.offsetWidth;
+    footerCanvas.height = footerCanvas.offsetHeight;
+  }
+  resizeFooterCanvas();
+  window.addEventListener('resize', resizeFooterCanvas);
+
+  const footerParticles = Array.from({ length: 100 }).map(() => ({
+    x: Math.random() * footerCanvas.width,
+    y: Math.random() * footerCanvas.height,
+    r: Math.random() * 2 + 0.5,
+    vx: (Math.random() - 0.5) * 0.2,
+    vy: (Math.random() - 0.5) * 0.2,
+    hue: 180 + Math.random() * 120
+  }));
+
+  function drawFooterParticles() {
+    footerCtx.clearRect(0, 0, footerCanvas.width, footerCanvas.height);
+    footerParticles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = footerCanvas.width;
+      if (p.x > footerCanvas.width) p.x = 0;
+      if (p.y < 0) p.y = footerCanvas.height;
+      if (p.y > footerCanvas.height) p.y = 0;
+
+      const g = footerCtx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 6);
+      g.addColorStop(0, `hsla(${p.hue},80%,60%,0.15)`);
+      g.addColorStop(1, 'rgba(255,255,255,0)');
+      footerCtx.fillStyle = g;
+      footerCtx.beginPath();
+      footerCtx.arc(p.x, p.y, p.r * 4, 0, Math.PI * 2);
+      footerCtx.fill();
+    });
+    requestAnimationFrame(drawFooterParticles);
+  }
+  drawFooterParticles();
+</script>
+
+  
 </body>
 
 </html>
